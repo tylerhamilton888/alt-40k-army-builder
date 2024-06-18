@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    background-color: #f8f9fa;
+  }
+  
+  .navbar-item {
+    margin: 0 10px;
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .navbar-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  

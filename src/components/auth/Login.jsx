@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
-import { getUserByEmail } from "../../services/userService";
-import { Button, Form } from "react-bootstrap";
+import { getUserByEmail, getAllUsers } from "../../services/userService";
 
 export const Login = () => {
-  const [email, set] = useState("susan.phillips@example.com");
+  const [email, setEmail] = useState("rogal@terra.com");
+  const [userEmails, setUserEmails] = useState([]);
+  const [showEmails, setShowEmails] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
+    // Get user by email from database, then store user in local storage
     getUserByEmail(email).then((foundUsers) => {
       if (foundUsers.length === 1) {
         const user = foundUsers[0];
@@ -19,44 +20,70 @@ export const Login = () => {
           "game_user",
           JSON.stringify({
             id: user.id,
-            isDev: user.isDev,
+            username: user.username
           })
         );
-
-        navigate("/");
+        navigate("/home");
       } else {
         window.alert("Invalid login");
       }
     });
   };
 
+  const handleFetchEmails = () => {
+    if (showEmails) {
+      setShowEmails(false);
+      setUserEmails([]);
+    } else {
+      getAllUsers().then((users) => {
+        const emails = users.map(user => user.email);
+        setUserEmails(emails);
+        setShowEmails(true);
+      });
+    }
+  };
+
   return (
-    <main className="auth-box">
+    <main className="container-login">
       <section>
-        <Form onSubmit={handleLogin}>
-          <Form.Group className="mb-2">
-          <h1><span className="title-style">Welcome to the Alt 40k Army Builder</span></h1>
-          <span className="body-style">Please sign in</span></Form.Group>
-          <Form.Group className="mb-3">
-              <Form.Control
+        <form className="form-login" onSubmit={handleLogin}>
+          <h1>Welcome To The Alt 40k Army Builder</h1>
+          <p>For the Emperor!</p>
+          <h2>Please sign in</h2>
+          <fieldset>
+            <div className="form-group">
+              <input
                 type="email"
-                id="email"
                 value={email}
-                onChange={(evt) => set(evt.target.value)}
+                onChange={(evt) => setEmail(evt.target.value)}
+                className="form-control"
                 placeholder="Email address"
                 required
                 autoFocus
               />
-          </Form.Group>
-          <Form.Group className="mb-3">
-              <Button variant="light" type="submit">
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
+              <button className="login-btn btn-info" type="submit">
                 Sign in
-              </Button>
-          </Form.Group>
-        </Form>
+              </button>
+            </div>
+          </fieldset>
+        </form>
       </section>
-      <section>
-        <Link className="link" to="/register">Not a member yet?</Link>
+      <section className="form-group-register">
+        <Link to="/register">Not a member yet?</Link>
+      </section>
+      <section className="form-group-emails">
+        <button onClick={handleFetchEmails} className="btn btn-secondary">Developer list of email logins</button>
+        {showEmails && (
+          <ul>
+            {userEmails.map((email, index) => (
+              <li key={index}>{email}</li>
+            ))}
+          </ul>
+        )}
       </section>
     </main>
   );

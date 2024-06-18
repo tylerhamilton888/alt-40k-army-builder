@@ -2,28 +2,34 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { createUser, getUserByEmail } from "../../services/userService";
-import { Button, Form } from "react-bootstrap";
 
 export const Register = (props) => {
-  const [customer, setCustomer] = useState({
+  const [user, setUser] = useState({
     email: "",
-    name: "",
-    isStaff: false,
+    username: "",
   });
   let navigate = useNavigate();
 
+  // Get user by email from database, then store user in local storage
   const registerNewUser = () => {
-    createUser(customer).then((createdUser) => {
+    createUser(user).then((createdUser) => {
       if (createdUser.hasOwnProperty("id")) {
-        // Redirect to login page after successful registration
-        navigate("/login");
+        localStorage.setItem(
+          "game_user",
+          JSON.stringify({
+            id: createdUser.id,
+            username: createdUser.username
+          })
+        );
+        // Then it will navigate to home
+        navigate("/");
       }
     });
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    getUserByEmail(customer.email).then((response) => {
+    getUserByEmail(user.email).then((response) => {
       if (response.length > 0) {
         // Duplicate email. No good.
         window.alert("Account with that email address already exists");
@@ -34,57 +40,51 @@ export const Register = (props) => {
     });
   };
 
-  const updateCustomer = (evt) => {
-    const copy = { ...customer };
+  const updateUser = (evt) => {
+    const copy = { ...user };
     copy[evt.target.id] = evt.target.value;
-    setCustomer(copy);
+    setUser(copy);
   };
 
   return (
-    <main className="auth-box">
-      <Form onSubmit={handleRegister}>
-        <Form.Group className="mb-2">
-          <h1><span className="title-style">Seneca Creek Sprigs</span></h1>
-          <span className="body-style">Please Register</span>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Control
-            onChange={updateCustomer}
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-            required
-            autoFocus
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Control
-            onChange={updateCustomer}
-            type="email"
-            id="email"
-            placeholder="Email address"
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Check
-            label="I am an employee"
-            onChange={(evt) => {
-              const copy = { ...customer };
-              copy.isStaff = evt.target.checked;
-              setCustomer(copy);
-            }}
-            type="checkbox"
-            id="isStaff"
-            className="text-center"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Button variant="light" type="submit">
-            Register
-          </Button>
-        </Form.Group>
-      </Form>
+    <main style={{ textAlign: "center" }}>
+      <form className="form-login" onSubmit={handleRegister}>
+        <h1>Alt 40k Army Builder</h1>
+        <h2>Please Register</h2>
+        <fieldset>
+          <div className="form-group">
+            <input
+              onChange={updateUser}
+              type="text"
+              id="email"
+              className="form-control"
+              placeholder="Enter your email"
+              required
+              autoFocus
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <input
+              onChange={updateUser}
+              type="text"
+              id="username"
+              className="form-control"
+              placeholder="Enter your desired username"
+              required
+              autoFocus
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <button className="login-btn btn-info" type="submit">
+              Register
+            </button>
+          </div>
+        </fieldset>
+      </form>
     </main>
   );
 };

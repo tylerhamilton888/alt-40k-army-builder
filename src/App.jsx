@@ -1,31 +1,25 @@
-/* eslint-disable no-unused-vars */
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ApplicationViews } from "./views/ApplicationViews.jsx";
 import { Login } from "./components/auth/Login.jsx";
 import { Register } from "./components/auth/Register.jsx";
 import { Authorized } from "./views/Authorized.jsx";
-import { LoginNav } from "./components/nav/LoginNav.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App = () => {
   return (
-    <>
-      <LoginNav />
+    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route
           path="*"
           element={
-            // Check if the user is authorized first
             <Authorized>
-              {/* ApplicationView is the CHILD component of Authorized */}
               <ApplicationViews />
             </Authorized>
           }
         />
       </Routes>
-    </>
+    </BrowserRouter>
   );
 };
