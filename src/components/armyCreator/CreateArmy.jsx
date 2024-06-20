@@ -118,7 +118,7 @@ const CreateArmy = () => {
             ))}
           </select>
 
-          {/* Add more dropdowns for other unit types similarly */}
+    
         </>
       )}
     </div>
