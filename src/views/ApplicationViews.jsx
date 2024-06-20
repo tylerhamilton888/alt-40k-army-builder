@@ -1,6 +1,8 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { NavBar } from '../components/nav/NavBar.jsx';
 import { useState, useEffect } from 'react';
+import { MyArmies } from '../components/armyViewer/MyArmies.jsx';
+import CreateArmy from '../components/armyCreator/CreateArmy.jsx'; // Update this line
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -29,12 +31,4 @@ const Home = ({ currentUser }) => {
     return <h1>Loading...</h1>;
   }
   return <h1>Welcome, {currentUser.username}</h1>;
-};
-
-const MyArmies = () => {
-  return <h1>My Armies</h1>;
-};
-
-const CreateArmy = () => {
-  return <h1>Create Army</h1>;
 };

@@ -163,7 +163,7 @@
       "id": 4,
       "factionId": 3,
       "name": "Aleya",
-      "unitTypeId": 2,
+      "unitTypeId": 1,
       "movement": 6,
       "weaponSkill": 2,
       "ballisticSkill": 2,
@@ -909,8 +909,6 @@
       "armorSave": 2,
       "points": 297
     },
-    {
-      "greyKnightUnits": [
         {
           "id": 21,
           "factionId": 2,
@@ -1015,5 +1013,4 @@
         }
       ]
     }
-  ]
-}
+  
