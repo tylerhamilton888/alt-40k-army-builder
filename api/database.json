@@ -18,7 +18,6 @@
       "email": "aurelian@colchis.com",
       "isDev": false
     }
-    
   ],
   "factions": [
     {
@@ -43,31 +42,27 @@
     }
   ],
   "armies": [
-    {
-      "id": 1,
+     {
       "armyFaction": 1,
-      "selectedHQ": 1,
-      "selectedTroop": 1,
-      "selectedElite": 1,
-      "selectedFastAttack": 0,
-      "selectedHeavySupport": 0,
-      "selectedFlyer": 0,
-      "selectedLow": 0,
-      "selectedFortification": 0,
-      "totalPoints": 1000
-    },
-    {
-      "id": 2,
-      "armyFaction": 2,
-      "selectedHQ": 1,
-      "selectedTroop": 1,
-      "selectedElite": 1,
-      "selectedFastAttack": 0,
-      "selectedHeavySupport": 0,
-      "selectedFlyer": 0,
-      "selectedLow": 0,
-      "selectedFortification": 0,
-      "totalPoints": 1000
+      "units": [
+        {
+          "unitTypeId": 7,
+          "unitId": 27,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 7,
+          "unitId": 27,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 7,
+          "unitId": 27,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 393,
+      "id": 1
     }
   ],
   "unitTypes": [
@@ -909,108 +904,107 @@
       "armorSave": 2,
       "points": 297
     },
-        {
-          "id": 21,
-          "factionId": 2,
-          "name": "Stormhawk Interceptor",
-          "unitTypeId": 6,
-          "movement": 50,
-          "weaponSkill": 5,
-          "ballisticSkill": 3,
-          "strength": 6,
-          "toughness": 12,
-          "wounds": 8,
-          "initiative": 1,
-          "attacks": 3,
-          "leadership": 9,
-          "armorSave": 3,
-          "points": 222
-        },
-        {
-          "id": 22,
-          "factionId": 2,
-          "name": "Stormraven Gunship",
-          "unitTypeId": 6,
-          "movement": 50,
-          "weaponSkill": 5,
-          "ballisticSkill": 3,
-          "strength": 7,
-          "toughness": 12,
-          "wounds": 14,
-          "initiative": 1,
-          "attacks": 3,
-          "leadership": 9,
-          "armorSave": 3,
-          "points": 321
-        },
-        {
-          "id": 23,
-          "factionId": 2,
-          "name": "Stormtalon Gunship",
-          "unitTypeId": 6,
-          "movement": 50,
-          "weaponSkill": 5,
-          "ballisticSkill": 3,
-          "strength": 6,
-          "toughness": 11,
-          "wounds": 8,
-          "initiative": 1,
-          "attacks": 3,
-          "leadership": 9,
-          "armorSave": 3,
-          "points": 228
-        },
-        {
-          "id": 24,
-          "factionId": 2,
-          "name": "Venerable Dreadnought",
-          "unitTypeId": 5,
-          "movement": 6,
-          "weaponSkill": 3,
-          "ballisticSkill": 3,
-          "strength": 6,
-          "toughness": 7,
-          "wounds": 8,
-          "initiative": 4,
-          "attacks": 4,
-          "leadership": 9,
-          "armorSave": 3,
-          "points": 150
-        },
-        {
-          "id": 25,
-          "factionId": 2,
-          "name": "Razorback",
-          "unitTypeId": 7,
-          "movement": 10,
-          "weaponSkill": 6,
-          "ballisticSkill": 4,
-          "strength": 6,
-          "toughness": 7,
-          "wounds": 6,
-          "initiative": 1,
-          "attacks": 1,
-          "leadership": 8,
-          "armorSave": 3,
-          "points": 110
-        },
-        {
-          "id": 26,
-          "factionId": 2,
-          "name": "Rhino",
-          "unitTypeId": 6,
-          "movement": 10,
-          "weaponSkill": 6,
-          "ballisticSkill": 4,
-          "strength": 6,
-          "toughness": 7,
-          "wounds": 6,
-          "initiative": 1,
-          "attacks": 1,
-          "leadership": 8,
-          "armorSave": 3,
-          "points": 90
-        }
-      ]
+    {
+      "id": 21,
+      "factionId": 2,
+      "name": "Stormhawk Interceptor",
+      "unitTypeId": 6,
+      "movement": 50,
+      "weaponSkill": 5,
+      "ballisticSkill": 3,
+      "strength": 6,
+      "toughness": 12,
+      "wounds": 8,
+      "initiative": 1,
+      "attacks": 3,
+      "leadership": 9,
+      "armorSave": 3,
+      "points": 222
+    },
+    {
+      "id": 22,
+      "factionId": 2,
+      "name": "Stormraven Gunship",
+      "unitTypeId": 6,
+      "movement": 50,
+      "weaponSkill": 5,
+      "ballisticSkill": 3,
+      "strength": 7,
+      "toughness": 12,
+      "wounds": 14,
+      "initiative": 1,
+      "attacks": 3,
+      "leadership": 9,
+      "armorSave": 3,
+      "points": 321
+    },
+    {
+      "id": 23,
+      "factionId": 2,
+      "name": "Stormtalon Gunship",
+      "unitTypeId": 6,
+      "movement": 50,
+      "weaponSkill": 5,
+      "ballisticSkill": 3,
+      "strength": 6,
+      "toughness": 11,
+      "wounds": 8,
+      "initiative": 1,
+      "attacks": 3,
+      "leadership": 9,
+      "armorSave": 3,
+      "points": 228
+    },
+    {
+      "id": 24,
+      "factionId": 2,
+      "name": "Venerable Dreadnought",
+      "unitTypeId": 5,
+      "movement": 6,
+      "weaponSkill": 3,
+      "ballisticSkill": 3,
+      "strength": 6,
+      "toughness": 7,
+      "wounds": 8,
+      "initiative": 4,
+      "attacks": 4,
+      "leadership": 9,
+      "armorSave": 3,
+      "points": 150
+    },
+    {
+      "id": 25,
+      "factionId": 2,
+      "name": "Razorback",
+      "unitTypeId": 7,
+      "movement": 10,
+      "weaponSkill": 6,
+      "ballisticSkill": 4,
+      "strength": 6,
+      "toughness": 7,
+      "wounds": 6,
+      "initiative": 1,
+      "attacks": 1,
+      "leadership": 8,
+      "armorSave": 3,
+      "points": 110
+    },
+    {
+      "id": 26,
+      "factionId": 2,
+      "name": "Rhino",
+      "unitTypeId": 6,
+      "movement": 10,
+      "weaponSkill": 6,
+      "ballisticSkill": 4,
+      "strength": 6,
+      "toughness": 7,
+      "wounds": 6,
+      "initiative": 1,
+      "attacks": 1,
+      "leadership": 8,
+      "armorSave": 3,
+      "points": 90
     }
-  
+  ]
+}
