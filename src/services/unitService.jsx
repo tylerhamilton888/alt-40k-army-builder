@@ -1,23 +1,32 @@
 const factionEndpoints = {
-    "Adeptus Custodes": "custodesUnits",
-    "Grey Knights": "greyKnightUnits"
-    // Add other factions as needed
-  };
+  1: 'custodesUnits', // Mapping faction ID to endpoint
+  2: 'greyKnightUnits' // Mapping faction ID to endpoint
+};
+
+export const getUnitsByFaction = async (factionIdentifier) => {
+  let endpoint;
   
-  export const getUnitsByFaction = async (factionName) => {
-    try {
-      const endpoint = factionEndpoints[factionName];
-      if (!endpoint) {
-        throw new Error(`No endpoint found for faction: ${factionName}`);
-      }
-      const response = await fetch(`http://localhost:8088/${endpoint}`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch units for ${factionName}`);
-      }
-      const units = await response.json();
-      return units;
-    } catch (error) {
-      console.error(error);
-      return [];
+  if (typeof factionIdentifier === 'number') {
+    endpoint = factionEndpoints[factionIdentifier];
+  } else {
+    endpoint = Object.keys(factionEndpoints).find(
+      key => factionEndpoints[key] === factionIdentifier
+    );
+  }
+
+  if (!endpoint) {
+    throw new Error(`No endpoint found for faction: ${factionIdentifier}`);
+  }
+
+  try {
+    const response = await fetch(`http://localhost:8088/${endpoint}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch units for ${factionIdentifier}`);
     }
-  };
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Failed to fetch units for ${factionIdentifier}`, error);
+    throw error;
+  }
+};

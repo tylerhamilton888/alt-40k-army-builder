@@ -1,9 +1,13 @@
+// src/components/armyCreator/CreateArmy.jsx
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getFactions } from '../../services/factionService';
 import { getUnitsByFaction } from '../../services/unitService';
-import { saveArmy } from '../../services/armyService'; 
+import { getArmyById, saveArmy, updateArmy } from '../../services/armyService';
 
 const CreateArmy = () => {
+  const { armyId } = useParams();
+  const navigate = useNavigate();
   const [factions, setFactions] = useState([]);
   const [selectedFaction, setSelectedFaction] = useState(null);
   const [units, setUnits] = useState({
@@ -12,12 +16,15 @@ const CreateArmy = () => {
     Elites: [],
     FastAttack: [],
     HeavySupport: [],
-    Flyer: [],
-    Transport: []
+    Flyers: [],
+    Transports: []
   });
   const [currentArmy, setCurrentArmy] = useState([]);
   const [visibleStats, setVisibleStats] = useState(null);
   const [totalPoints, setTotalPoints] = useState(0);
+  const [activeUser, setActiveUser] = useState(null);
+  const [armyName, setArmyName] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchFactions = async () => {
@@ -25,31 +32,52 @@ const CreateArmy = () => {
       setFactions(factionsData);
     };
     fetchFactions();
-  }, []);
+
+    const user = JSON.parse(localStorage.getItem('game_user'));
+    setActiveUser(user);
+
+    if (armyId) {
+      setIsEditing(true);
+      const fetchArmy = async () => {
+        const armyData = await getArmyById(armyId);
+        setArmyName(armyData.armyName);
+        setSelectedFaction(armyData.armyFaction);
+        setCurrentArmy(armyData.units);
+
+        const unitsData = await getUnitsByFaction(armyData.armyFaction);
+        setUnits({
+          HQ: unitsData.filter(unit => unit.unitTypeId === 1),
+          Elites: unitsData.filter(unit => unit.unitTypeId === 2),
+          Troops: unitsData.filter(unit => unit.unitTypeId === 3),
+          FastAttack: unitsData.filter(unit => unit.unitTypeId === 4),
+          HeavySupport: unitsData.filter(unit => unit.unitTypeId === 5),
+          Flyers: unitsData.filter(unit => unit.unitTypeId === 6),
+          Transports: unitsData.filter(unit => unit.unitTypeId === 7)
+        });
+      };
+      fetchArmy();
+    }
+  }, [armyId]);
 
   useEffect(() => {
-    
-    const points = currentArmy.reduce((total, unit) => total + unit.points, 0);
+    const points = currentArmy.reduce((total, unit) => total + (unit.points || 0), 0);
     setTotalPoints(points);
   }, [currentArmy]);
 
   const handleFactionChange = async (event) => {
     const factionId = parseInt(event.target.value);
-    const faction = factions.find(faction => faction.id === factionId);
-    setSelectedFaction(faction);
-
-    // Clear the current army when faction changes
+    setSelectedFaction(factionId);
     setCurrentArmy([]);
 
-    const unitsData = await getUnitsByFaction(faction.factionName);
+    const unitsData = await getUnitsByFaction(factionId);
     setUnits({
       HQ: unitsData.filter(unit => unit.unitTypeId === 1),
       Elites: unitsData.filter(unit => unit.unitTypeId === 2),
       Troops: unitsData.filter(unit => unit.unitTypeId === 3),
       FastAttack: unitsData.filter(unit => unit.unitTypeId === 4),
       HeavySupport: unitsData.filter(unit => unit.unitTypeId === 5),
-      Flyer: unitsData.filter(unit => unit.unitTypeId === 6),
-      Transport: unitsData.filter(unit => unit.unitTypeId === 7)
+      Flyers: unitsData.filter(unit => unit.unitTypeId === 6),
+      Transports: unitsData.filter(unit => unit.unitTypeId === 7)
     });
   };
 
@@ -58,29 +86,51 @@ const CreateArmy = () => {
   };
 
   const removeUnitFromArmy = (index) => {
-    const updatedArmy = [...currentArmy];
-    updatedArmy.splice(index, 1); 
-    setCurrentArmy(updatedArmy);
+    const newArmy = [...currentArmy];
+    newArmy.splice(index, 1);
+    setCurrentArmy(newArmy);
   };
 
   const handleSaveArmy = async () => {
+    if (!activeUser) {
+      alert('No active user found');
+      return;
+    }
+
+    if (!armyName.trim()) {
+      alert('Please name your army');
+      return;
+    }
+
     const armyData = {
-      armyFaction: selectedFaction.id,
+      userId: activeUser.id,
+      armyName,
+      armyFaction: selectedFaction,
       units: currentArmy.map(unit => ({
         unitTypeId: unit.unitTypeId,
         unitId: unit.id,
-        quantity: 1 
+        quantity: 1
       })),
       totalPoints
     };
 
-    const response = await saveArmy(armyData);
-    if (response.ok) {
-      alert('Army saved successfully');
-      setCurrentArmy([]); 
+    let response;
+    if (isEditing) {
+      response = await updateArmy(armyId, armyData);
     } else {
-      alert('Failed to save army');
+      response = await saveArmy(armyData);
     }
+
+    if (response.ok) {
+      alert(`Army ${isEditing ? 'updated' : 'saved'} successfully`);
+      navigate('/myarmies');
+    } else {
+      alert(`Failed to ${isEditing ? 'update' : 'save'} army`);
+    }
+  };
+
+  const handleCancel = () => {
+    navigate('/myarmies');
   };
 
   const toggleStats = (unitId) => {
@@ -89,9 +139,17 @@ const CreateArmy = () => {
 
   return (
     <div>
-      <h1>Create Army</h1>
+      <h1>{isEditing ? 'Edit Army' : 'Create Army'}</h1>
+      <label htmlFor="armyName">Army Name:</label>
+      <input
+        type="text"
+        id="armyName"
+        value={armyName}
+        onChange={(e) => setArmyName(e.target.value)}
+      />
+
       <label htmlFor="faction">Select Faction:</label>
-      <select id="faction" onChange={handleFactionChange}>
+      <select id="faction" onChange={handleFactionChange} value={selectedFaction}>
         <option value="">--Select Faction--</option>
         {factions.map(faction => (
           <option key={faction.id} value={faction.id}>
@@ -125,7 +183,6 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
-
           <h2>Troops</h2>
           {units.Troops.map(unit => (
             <div key={unit.id}>
@@ -149,7 +206,6 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
-
           <h2>Elites</h2>
           {units.Elites.map(unit => (
             <div key={unit.id}>
@@ -173,7 +229,6 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
-
           <h2>Heavy Support</h2>
           {units.HeavySupport.map(unit => (
             <div key={unit.id}>
@@ -197,7 +252,6 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
-
           <h2>Fast Attack</h2>
           {units.FastAttack.map(unit => (
             <div key={unit.id}>
@@ -221,9 +275,8 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
-
           <h2>Flyers</h2>
-          {units.Flyer.map(unit => (
+          {units.Flyers.map(unit => (
             <div key={unit.id}>
               <span>{unit.name}</span>
               <button onClick={() => addUnitToArmy(unit)}>Add</button>
@@ -245,9 +298,8 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
-
           <h2>Transports</h2>
-          {units.Transport.map(unit => (
+          {units.Transports.map(unit => (
             <div key={unit.id}>
               <span>{unit.name}</span>
               <button onClick={() => addUnitToArmy(unit)}>Add</button>
@@ -269,38 +321,39 @@ const CreateArmy = () => {
               )}
             </div>
           ))}
+          <div>
+            <h2>Current Army</h2>
+            <p>Total Points: {totalPoints}</p>
+            {currentArmy.map((unit, index) => (
+              <div key={index}>
+                <span>{unit.name}</span>
+                <button onClick={() => toggleStats(unit.id)}>Display Stats</button>
+                {visibleStats === unit.id && (
+                  <div>
+                    <p>Movement: {unit.movement}</p>
+                    <p>Weapon Skill: {unit.weaponSkill}</p>
+                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
+                    <p>Strength: {unit.strength}</p>
+                    <p>Toughness: {unit.toughness}</p>
+                    <p>Wounds: {unit.wounds}</p>
+                    <p>Initiative: {unit.initiative}</p>
+                    <p>Attacks: {unit.attacks}</p>
+                    <p>Leadership: {unit.leadership}</p>
+                    <p>Armor Save: {unit.armorSave}</p>
+                    <p>Points: {unit.points}</p>
+                  </div>
+                )}
+                <button onClick={() => removeUnitFromArmy(index)}>Remove</button>
+              </div>
+            ))}
+            <button onClick={handleSaveArmy}>{isEditing ? 'Save Changes' : 'Save Army'}</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </div>
         </>
       )}
-
-      <div>
-        <h2>Current Army</h2>
-        <p>Total Points: {totalPoints}</p> 
-        {currentArmy.map((unit, index) => (
-          <div key={index}>
-            <span>{unit.name}</span>
-            <button onClick={() => toggleStats(unit.id)}>Display Stats</button>
-            {visibleStats === unit.id && (
-              <div>
-                <p>Movement: {unit.movement}</p>
-                <p>Weapon Skill: {unit.weaponSkill}</p>
-                <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                <p>Strength: {unit.strength}</p>
-                <p>Toughness: {unit.toughness}</p>
-                <p>Wounds: {unit.wounds}</p>
-                <p>Initiative: {unit.initiative}</p>
-                <p>Attacks: {unit.attacks}</p>
-                <p>Leadership: {unit.leadership}</p>
-                <p>Armor Save: {unit.armorSave}</p>
-                <p>Points: {unit.points}</p>
-              </div>
-            )}
-            <button onClick={() => removeUnitFromArmy(index)}>Remove</button>
-          </div>
-        ))}
-        <button onClick={handleSaveArmy}>Save Army</button>
-      </div>
     </div>
   );
 };
 
 export default CreateArmy;
+

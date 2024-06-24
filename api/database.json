@@ -42,8 +42,9 @@
     }
   ],
   "armies": [
-     {
+    {
       "armyFaction": 1,
+      "userId": 1,
       "units": [
         {
           "unitTypeId": 7,
@@ -63,6 +64,141 @@
       ],
       "totalPoints": 393,
       "id": 1
+    },
+    {
+      "userId": 1,
+      "armyFaction": 1,
+      "armyName": "Dorn Army",
+      "units": [
+        {
+          "unitTypeId": 1,
+          "unitId": 1,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 3,
+          "unitId": 8,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 2,
+          "unitId": 5,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 5,
+          "unitId": 14,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 4,
+          "unitId": 17,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 7,
+          "unitId": 26,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 6,
+          "unitId": 24,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 2160,
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "armyFaction": 2,
+      "armyName": "Curze Army",
+      "units": [
+        {
+          "unitTypeId": 1,
+          "unitId": 8,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 1,
+          "unitId": 6,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 3,
+          "unitId": 13,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 758,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "armyName": "Test Army",
+      "armyFaction": 1,
+      "units": [
+        {
+          "unitTypeId": 1,
+          "unitId": 1,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 3,
+          "unitId": 9,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 2,
+          "unitId": 13,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 5,
+          "unitId": 15,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 4,
+          "unitId": 18,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 1090,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "armyName": "Valoris and a pal",
+      "armyFaction": 1,
+      "units": [
+        {
+          "unitTypeId": 1,
+          "unitId": 2,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 2,
+          "unitId": 5,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 436,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "armyName": "Test nonsense",
+      "armyFaction": 1,
+      "units": [
+        {
+          "unitTypeId": 1,
+          "unitId": 1,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 233,
+      "id": 6
     }
   ],
   "unitTypes": [
