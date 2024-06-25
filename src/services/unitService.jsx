@@ -1,6 +1,6 @@
 const factionEndpoints = {
-  1: 'custodesUnits', // Mapping faction ID to endpoint
-  2: 'greyKnightUnits' // Mapping faction ID to endpoint
+  1: 'custodesUnits', 
+  2: 'greyKnightUnits' 
 };
 
 export const getUnitsByFaction = async (factionIdentifier) => {

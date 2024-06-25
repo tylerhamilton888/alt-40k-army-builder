@@ -1,4 +1,4 @@
-// src/services/armyService.jsx
+
 export const getArmiesByUserId = async (userId) => {
   try {
     const response = await fetch(`http://localhost:8088/armies?userId=${userId}`);

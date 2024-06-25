@@ -17,6 +17,16 @@
       "username": "The_Word_Bearer",
       "email": "aurelian@colchis.com",
       "isDev": false
+    },
+    {
+      "email": "test@test.test",
+      "username": "testerman",
+      "id": 4
+    },
+    {
+      "email": "test123@test.test",
+      "username": "testerman2",
+      "id": 5
     }
   ],
   "factions": [
@@ -172,6 +182,25 @@
       ],
       "totalPoints": 978,
       "id": 6
+    },
+    {
+      "userId": 1,
+      "armyName": "Crowe and Company",
+      "armyFaction": 2,
+      "units": [
+        {
+          "unitTypeId": 1,
+          "unitId": 6,
+          "quantity": 1
+        },
+        {
+          "unitTypeId": 3,
+          "unitId": 14,
+          "quantity": 1
+        }
+      ],
+      "totalPoints": 338,
+      "id": 7
     }
   ],
   "unitTypes": [
@@ -892,7 +921,7 @@
       "attacks": 1,
       "leadership": 8,
       "armorSave": 3,
-      "points": 20
+      "points": 255
     },
     {
       "id": 14,
@@ -909,7 +938,7 @@
       "attacks": 2,
       "leadership": 8,
       "armorSave": 3,
-      "points": 44
+      "points": 445
     },
     {
       "id": 15,

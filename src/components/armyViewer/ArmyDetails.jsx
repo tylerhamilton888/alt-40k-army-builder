@@ -1,37 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getArmyById, deleteArmyById } from '../../services/armyService';
+import { getFactions } from '../../services/factionService';
 
 const ArmyDetails = () => {
   const { armyId } = useParams();
   const navigate = useNavigate();
   const [army, setArmy] = useState(null);
+  const [factions, setFactions] = useState([]);
   const [visibleStats, setVisibleStats] = useState(null);
 
   useEffect(() => {
     const fetchArmy = async () => {
-      try {
-        const armyData = await getArmyById(armyId);
-        setArmy(armyData);
-      } catch (error) {
-        console.error('Failed to fetch army details:', error);
-      }
+      const armyData = await getArmyById(armyId);
+      setArmy(armyData);
+    };
+
+    const fetchFactions = async () => {
+      const factionsData = await getFactions();
+      setFactions(factionsData);
     };
 
     fetchArmy();
+    fetchFactions();
   }, [armyId]);
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(`CONFIRM: Do you want to delete ${army.armyName}?`);
     if (confirmDelete) {
-      try {
-        await deleteArmyById(armyId);
-        alert('Army deleted successfully');
-        navigate('/myarmies');
-      } catch (error) {
-        alert('Failed to delete army');
-        console.error('Failed to delete army:', error);
-      }
+      await deleteArmyById(armyId);
+      navigate('/myarmies');
     }
   };
 
@@ -43,10 +41,12 @@ const ArmyDetails = () => {
     return <div>Loading...</div>;
   }
 
+  const factionName = factions.find(faction => faction.id === army.armyFaction)?.factionName || 'Unknown Faction';
+
   return (
     <div>
       <h1>{army.armyName}</h1>
-      <p>Faction: {army.armyFactionName}</p>
+      <p>Faction: {factionName}</p>
       <h2>Units:</h2>
       {army.units.map((unit, index) => (
         <div key={index}>

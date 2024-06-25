@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { NavBar } from '../components/nav/NavBar';
 import MyArmies from '../components/armyViewer/MyArmies';
 import CreateArmy from '../components/armyCreator/CreateArmy';
@@ -17,6 +17,7 @@ export const ApplicationViews = () => {
     <>
       <NavBar />
       <Routes>
+      <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Home currentUser={currentUser} />} />
         <Route path="/myarmies" element={<MyArmies />} />
         <Route path="/createarmy" element={<CreateArmy />} />
