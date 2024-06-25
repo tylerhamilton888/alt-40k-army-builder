@@ -29,58 +29,8 @@
       "factionName": "Grey Knights"
     }
   ],
-  "userArmies": [
-    {
-      "id": 2,
-      "userId": 2,
-      "armyId": 2
-    }
-  ],
+  "userArmies": [],
   "armies": [
-    {
-      "userId": 1,
-      "armyFaction": 1,
-      "armyName": "Dorn Army",
-      "units": [
-        {
-          "unitTypeId": 1,
-          "unitId": 1,
-          "quantity": 1
-        },
-        {
-          "unitTypeId": 3,
-          "unitId": 8,
-          "quantity": 1
-        },
-        {
-          "unitTypeId": 2,
-          "unitId": 5,
-          "quantity": 1
-        },
-        {
-          "unitTypeId": 5,
-          "unitId": 14,
-          "quantity": 1
-        },
-        {
-          "unitTypeId": 4,
-          "unitId": 17,
-          "quantity": 1
-        },
-        {
-          "unitTypeId": 7,
-          "unitId": 26,
-          "quantity": 1
-        },
-        {
-          "unitTypeId": 6,
-          "unitId": 24,
-          "quantity": 1
-        }
-      ],
-      "totalPoints": 2160,
-      "id": 2
-    },
     {
       "userId": 2,
       "armyFaction": 2,

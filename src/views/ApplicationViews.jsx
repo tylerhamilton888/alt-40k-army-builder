@@ -1,8 +1,9 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { NavBar } from '../components/nav/NavBar.jsx';
 import { useState, useEffect } from 'react';
-import MyArmies from '../components/armyViewer/MyArmies.jsx';
-import CreateArmy from '../components/armyCreator/CreateArmy.jsx';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import { NavBar } from '../components/nav/NavBar';
+import MyArmies from '../components/armyViewer/MyArmies';
+import CreateArmy from '../components/armyCreator/CreateArmy';
+import ArmyDetails from '../components/armyViewer/ArmyDetails';
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -20,7 +21,7 @@ export const ApplicationViews = () => {
         <Route path="/myarmies" element={<MyArmies />} />
         <Route path="/createarmy" element={<CreateArmy />} />
         <Route path="/createarmy/:armyId" element={<CreateArmy />} />
-        {/* Add more routes here as needed */}
+        <Route path="/army/:armyId" element={<ArmyDetails />} />
       </Routes>
       <Outlet />
     </>
@@ -33,5 +34,3 @@ const Home = ({ currentUser }) => {
   }
   return <h1>Welcome, {currentUser.username}</h1>;
 };
-
-export default ApplicationViews;

@@ -1,4 +1,3 @@
-// src/components/armyCreator/CreateArmy.jsx
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getFactions } from '../../services/factionService';
@@ -9,15 +8,15 @@ const CreateArmy = () => {
   const { armyId } = useParams();
   const navigate = useNavigate();
   const [factions, setFactions] = useState([]);
-  const [selectedFaction, setSelectedFaction] = useState(null);
+  const [selectedFaction, setSelectedFaction] = useState('');
   const [units, setUnits] = useState({
     HQ: [],
     Troops: [],
     Elites: [],
     FastAttack: [],
     HeavySupport: [],
-    Flyers: [],
-    Transports: []
+    Flyer: [],
+    Transport: []
   });
   const [currentArmy, setCurrentArmy] = useState([]);
   const [visibleStats, setVisibleStats] = useState(null);
@@ -43,7 +42,6 @@ const CreateArmy = () => {
         setArmyName(armyData.armyName);
         setSelectedFaction(armyData.armyFaction);
         setCurrentArmy(armyData.units);
-
         const unitsData = await getUnitsByFaction(armyData.armyFaction);
         setUnits({
           HQ: unitsData.filter(unit => unit.unitTypeId === 1),
@@ -51,8 +49,8 @@ const CreateArmy = () => {
           Troops: unitsData.filter(unit => unit.unitTypeId === 3),
           FastAttack: unitsData.filter(unit => unit.unitTypeId === 4),
           HeavySupport: unitsData.filter(unit => unit.unitTypeId === 5),
-          Flyers: unitsData.filter(unit => unit.unitTypeId === 6),
-          Transports: unitsData.filter(unit => unit.unitTypeId === 7)
+          Flyer: unitsData.filter(unit => unit.unitTypeId === 6),
+          Transport: unitsData.filter(unit => unit.unitTypeId === 7)
         });
       };
       fetchArmy();
@@ -76,8 +74,8 @@ const CreateArmy = () => {
       Troops: unitsData.filter(unit => unit.unitTypeId === 3),
       FastAttack: unitsData.filter(unit => unit.unitTypeId === 4),
       HeavySupport: unitsData.filter(unit => unit.unitTypeId === 5),
-      Flyers: unitsData.filter(unit => unit.unitTypeId === 6),
-      Transports: unitsData.filter(unit => unit.unitTypeId === 7)
+      Flyer: unitsData.filter(unit => unit.unitTypeId === 6),
+      Transport: unitsData.filter(unit => unit.unitTypeId === 7)
     });
   };
 
@@ -149,7 +147,7 @@ const CreateArmy = () => {
       />
 
       <label htmlFor="faction">Select Faction:</label>
-      <select id="faction" onChange={handleFactionChange} value={selectedFaction}>
+      <select id="faction" onChange={handleFactionChange} value={selectedFaction || ''}>
         <option value="">--Select Faction--</option>
         {factions.map(faction => (
           <option key={faction.id} value={faction.id}>
@@ -276,7 +274,7 @@ const CreateArmy = () => {
             </div>
           ))}
           <h2>Flyers</h2>
-          {units.Flyers.map(unit => (
+          {units.Flyer.map(unit => (
             <div key={unit.id}>
               <span>{unit.name}</span>
               <button onClick={() => addUnitToArmy(unit)}>Add</button>
@@ -299,7 +297,7 @@ const CreateArmy = () => {
             </div>
           ))}
           <h2>Transports</h2>
-          {units.Transports.map(unit => (
+          {units.Transport.map(unit => (
             <div key={unit.id}>
               <span>{unit.name}</span>
               <button onClick={() => addUnitToArmy(unit)}>Add</button>
@@ -356,4 +354,3 @@ const CreateArmy = () => {
 };
 
 export default CreateArmy;
-

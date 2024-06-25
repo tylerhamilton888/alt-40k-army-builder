@@ -62,3 +62,17 @@ export const updateArmy = async (armyId, army) => {
     return { ok: false };
   }
 };
+
+export const deleteArmyById = async (armyId) => {
+  try {
+    const response = await fetch(`http://localhost:8088/armies/${armyId}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete army');
+    }
+   
+  } catch (error) {
+    console.error(error);
+  }
+};
