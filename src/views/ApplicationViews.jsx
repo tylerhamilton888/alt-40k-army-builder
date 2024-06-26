@@ -4,6 +4,7 @@ import { NavBar } from '../components/nav/NavBar';
 import MyArmies from '../components/armyViewer/MyArmies';
 import CreateArmy from '../components/armyCreator/CreateArmy';
 import ArmyDetails from '../components/armyViewer/ArmyDetails';
+import '../App.css';
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -16,6 +17,7 @@ export const ApplicationViews = () => {
   return (
     <>
       <NavBar />
+      <div className='container'>
       <Routes>
       <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Home currentUser={currentUser} />} />
@@ -25,6 +27,7 @@ export const ApplicationViews = () => {
         <Route path="/army/:armyId" element={<ArmyDetails />} />
       </Routes>
       <Outlet />
+      </div>
     </>
   );
 };

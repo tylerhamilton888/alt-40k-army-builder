@@ -27,6 +27,11 @@
       "email": "test123@test.test",
       "username": "testerman2",
       "id": 5
+    },
+    {
+      "email": "bob@test.com",
+      "username": "Bob",
+      "id": 6
     }
   ],
   "factions": [

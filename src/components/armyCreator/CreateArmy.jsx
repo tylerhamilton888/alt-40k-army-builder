@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getFactions } from '../../services/factionService';
 import { getUnitsByFaction } from '../../services/unitService';
 import { getArmyById, saveArmy, updateArmy } from '../../services/armyService';
+import '../../App.css' ;
 
 const CreateArmy = () => {
   const { armyId } = useParams();
