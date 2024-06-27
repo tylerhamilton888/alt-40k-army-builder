@@ -1,0 +1,31 @@
+.army-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 60px; 
+  }
+  
+  .create-army-section {
+    flex: 2;
+    margin-right: 20px;
+  }
+  
+  .current-army-section {
+    flex: 1;
+    border: 1px solid #00ff00;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .unit-list-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 1em;
+  }
+  
+  .current-army-container {
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 1em;
+  }
+  

@@ -1,4 +1,3 @@
-
 export const getArmiesByUserId = async (userId) => {
   try {
     const response = await fetch(`http://localhost:8088/armies?userId=${userId}`);
@@ -71,7 +70,6 @@ export const deleteArmyById = async (armyId) => {
     if (!response.ok) {
       throw new Error('Failed to delete army');
     }
-   
   } catch (error) {
     console.error(error);
   }

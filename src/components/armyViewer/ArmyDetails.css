@@ -1,0 +1,14 @@
+.unit-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .unit-stats div {
+    margin: 5px;
+    text-align: center;
+  }
+  

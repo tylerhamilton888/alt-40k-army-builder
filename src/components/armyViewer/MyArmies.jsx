@@ -1,51 +1,57 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getArmiesByUserId,  deleteArmyById } from '../../services/armyService';
+import { getArmiesByUserId, deleteArmyById } from '../../services/armyService';
+import './MyArmies.css';
 
 const MyArmies = () => {
-  const [armies, setArmies] = useState([]);
-  const [userId, setUserId] = useState(null);
+    const [armies, setArmies] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('game_user'));
-    if (user) {
-      setUserId(user.id);
-      fetchArmies(user.id);
+    useEffect(() => {
+        const userId = JSON.parse(localStorage.getItem('game_user')).id;
+        const fetchArmies = async () => {
+            try {
+                const fetchedArmies = await getArmiesByUserId(userId);
+                setArmies(fetchedArmies);
+            } catch (error) {
+                console.error('Error fetching armies:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchArmies();
+    }, []);
+
+    const handleDelete = async (armyId) => {
+        if (window.confirm('Are you sure you want to delete this army?')) {
+            try {
+                await deleteArmyById(armyId);
+                setArmies(armies.filter((army) => army.id !== armyId));
+            } catch (error) {
+                console.error('Error deleting army:', error);
+            }
+        }
+    };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
-  }, []);
 
-  const fetchArmies = async (userId) => {
-    const data = await getArmiesByUserId(userId);
-    setArmies(data);
-  };
-
-  const handleDelete = async (armyId, armyName) => {
-    if (window.confirm(`CONFIRM: Do you want to delete ${armyName}?`)) {
-      const response = await deleteArmyById(armyId);
-      if (response.ok) {
-        fetchArmies(userId);
-      } else {
-        alert('Failed to delete army');
-      }
-    }
-  };
-
-  return (
-    <div>
-      <h1>My Armies</h1>
-      {armies.length > 0 ? (
-        armies.map((army) => (
-          <div key={army.id}>
-            <Link to={`/army/${army.id}`}>{army.armyName}</Link>
-            <button onClick={() => handleDelete(army.id, army.armyName)}>Delete</button>
-            <Link to={`/createarmy/${army.id}`}>Edit</Link>
-          </div>
-        ))
-      ) : (
-        <p>You have no armies.</p>
-      )}
-    </div>
-  );
+    return (
+        <div className="my-armies-container">
+            <h2>My Armies</h2>
+            <ul className="army-list">
+                {armies.map((army) => (
+                    <li key={army.id} className="army-item">
+                        <Link to={`/army/${army.id}`}>{army.armyName}</Link>
+                        <button onClick={() => handleDelete(army.id)}>Delete</button>
+                        <Link to={`/createarmy/${army.id}`}>Edit</Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default MyArmies;

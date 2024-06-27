@@ -7,17 +7,22 @@
   border-bottom: 2px solid #333333;
   font-family: 'Courier New', Courier, monospace;
   color: #00ff00;
+  list-style-type: none; 
 }
 
-.navbar a {
+.navbar-item {
+  list-style-type: none; 
+  margin: 0 15px; 
+}
+
+.navbar-link {
   color: #00ff00;
   text-decoration: none;
-  margin: 0 15px;
   transition: color 0.3s;
 }
 
-.navbar a:hover {
-  color: #00cc00;
+.navbar-link:hover {
+  color: #cc0000;
 }
 
 .navbar button {

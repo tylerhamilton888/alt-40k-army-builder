@@ -1,42 +1,37 @@
-.army-item {
-    cursor: pointer;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .army-item:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .army-name {
-    color: #007bff;
-    text-decoration: underline;
-    margin: 0;
-  }
-  
-  .army-name:hover {
-    color: #0056b3;
-  }
-  
-  .confirmation-dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .confirmation-dialog p {
-    margin: 0 0 20px;
-  }
-  
-  .confirmation-dialog button {
-    margin: 0 10px;
-  }
-  
+.my-armies-container {
+  text-align: center;
+  margin: 3rem auto;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.my-armies-container h2 {
+  font-size: 2.5rem;
+}
+
+.my-armies-container a {
+  color: #00ff00;
+  text-decoration: none;
+  transition: color 0.3s;
+  margin: 0 10px;
+}
+
+.my-armies-container a:hover {
+  color: #00cc00;
+}
+
+.my-armies-container button {
+  background-color: #000000;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 10px;
+}
+
+.my-armies-container button:hover {
+  background-color: #333333;
+  color: #00ff00;
+}

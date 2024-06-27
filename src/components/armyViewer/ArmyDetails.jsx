@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getArmyById, deleteArmyById } from '../../services/armyService';
-import { getFactions } from '../../services/factionService';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getArmyById } from '../../services/armyService';
+import './ArmyDetails.css';
 
 const ArmyDetails = () => {
   const { armyId } = useParams();
-  const navigate = useNavigate();
   const [army, setArmy] = useState(null);
-  const [factions, setFactions] = useState([]);
   const [visibleStats, setVisibleStats] = useState(null);
 
   useEffect(() => {
@@ -15,62 +13,65 @@ const ArmyDetails = () => {
       const armyData = await getArmyById(armyId);
       setArmy(armyData);
     };
-
-    const fetchFactions = async () => {
-      const factionsData = await getFactions();
-      setFactions(factionsData);
-    };
-
     fetchArmy();
-    fetchFactions();
   }, [armyId]);
-
-  const handleDelete = async () => {
-    const confirmDelete = window.confirm(`CONFIRM: Do you want to delete ${army.armyName}?`);
-    if (confirmDelete) {
-      await deleteArmyById(armyId);
-      navigate('/myarmies');
-    }
-  };
 
   const toggleStats = (unitId) => {
     setVisibleStats(visibleStats === unitId ? null : unitId);
   };
 
   if (!army) {
-    return <div>Loading...</div>;
+    return <h2>Loading...</h2>;
   }
 
-  const factionName = factions.find(faction => faction.id === army.armyFaction)?.factionName || 'Unknown Faction';
-
   return (
-    <div>
-      <h1>{army.armyName}</h1>
-      <p>Faction: {factionName}</p>
-      <h2>Units:</h2>
-      {army.units.map((unit, index) => (
-        <div key={index}>
+    <div className="army-details">
+      <h2>{army.armyName}</h2>
+      <p>Faction: {army.factionName}</p>
+      <h3>Units:</h3>
+      {army.units.map(unit => (
+        <div key={unit.id} className="unit">
           <span>{unit.name}</span>
           <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
           {visibleStats === unit.id && (
-            <div>
-              <p>Movement: {unit.movement}</p>
-              <p>Weapon Skill: {unit.weaponSkill}</p>
-              <p>Ballistic Skill: {unit.ballisticSkill}</p>
-              <p>Strength: {unit.strength}</p>
-              <p>Toughness: {unit.toughness}</p>
-              <p>Wounds: {unit.wounds}</p>
-              <p>Initiative: {unit.initiative}</p>
-              <p>Attacks: {unit.attacks}</p>
-              <p>Leadership: {unit.leadership}</p>
-              <p>Armor Save: {unit.armorSave}</p>
-              <p>Points: {unit.points}</p>
+            <div className="unit-stats">
+              <div>
+                <strong>Movement:</strong> {unit.movement}
+              </div>
+              <div>
+                <strong>Weapon Skill:</strong> {unit.weaponSkill}
+              </div>
+              <div>
+                <strong>Ballistic Skill:</strong> {unit.ballisticSkill}
+              </div>
+              <div>
+                <strong>Strength:</strong> {unit.strength}
+              </div>
+              <div>
+                <strong>Toughness:</strong> {unit.toughness}
+              </div>
+              <div>
+                <strong>Wounds:</strong> {unit.wounds}
+              </div>
+              <div>
+                <strong>Initiative:</strong> {unit.initiative}
+              </div>
+              <div>
+                <strong>Attacks:</strong> {unit.attacks}
+              </div>
+              <div>
+                <strong>Leadership:</strong> {unit.leadership}
+              </div>
+              <div>
+                <strong>Armor Save:</strong> {unit.armorSave}
+              </div>
+              <div>
+                <strong>Points:</strong> {unit.points}
+              </div>
             </div>
           )}
         </div>
       ))}
-      <button onClick={() => navigate(`/createarmy/${armyId}`)}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };
