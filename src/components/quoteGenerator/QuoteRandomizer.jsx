@@ -1,24 +1,30 @@
-import { useEffect, useState } from 'react';
-import { getRandomQuote } from '../../services/quoteService';
-import './Quotes.css';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const QuoteRandomizer = () => {
-  const [quote, setQuote] = useState('');
+    const [quote, setQuote] = useState('');
+    const location = useLocation();
 
-  useEffect(() => {
     const fetchQuote = async () => {
-      const fetchedQuote = await getRandomQuote();
-      setQuote(fetchedQuote.text);
+        try {
+            const response = await fetch('http://localhost:8088/imperiumQuotes');
+            const quotes = await response.json();
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            setQuote(randomQuote.text);
+        } catch (error) {
+            console.error('Failed to fetch quotes:', error);
+        }
     };
 
-    fetchQuote();
-  }, []);
+    useEffect(() => {
+        fetchQuote();
+    }, [location]);
 
-  return (
-    <div className="quote-container">
-      <p>{quote}</p>
-    </div>
-  );
+    return (
+        <div className="quote-container">
+            <p>{quote}</p>
+        </div>
+    );
 };
 
 export default QuoteRandomizer;
