@@ -1,31 +1,93 @@
-.army-container {
+/* CreateArmy.css */
+.create-army-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding-top: 60px; 
+    padding: 20px;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
   }
   
   .create-army-section {
-    flex: 2;
-    margin-right: 20px;
-  }
-  
-  .current-army-section {
-    flex: 1;
-    border: 1px solid #00ff00;
+    width: 48%;
+    background-color: #000000;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    max-height: 80vh;
   }
   
-  .unit-list-container {
-    max-height: 60vh;
-    overflow-y: auto;
-    padding: 1em;
+  .create-army-section h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #00ff00;
+    padding-bottom: 10px;
   }
   
-  .current-army-container {
-    max-height: 40vh;
-    overflow-y: auto;
-    padding: 1em;
+  .create-army-section div {
+    margin-bottom: 10px;
+  }
+  
+  .create-army-section button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 10px;
+  }
+  
+  .create-army-section button:hover {
+    background-color: #333333;
+    color: #00ff00;
+  }
+  
+  .current-army {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .current-army li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #00ff00;
+    padding: 10px 0;
+  }
+  
+  .current-army li span {
+    flex-grow: 1;
+  }
+  
+  .current-army button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 10px;
+  }
+  
+  .current-army button:hover {
+    background-color: #333333;
+    color: #00ff00;
+  }
+  
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .stats p {
+    margin: 0;
+    padding: 5px;
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
   }
   

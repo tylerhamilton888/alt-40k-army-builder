@@ -1,37 +1,23 @@
-.my-armies-container {
-  text-align: center;
-  margin: 3rem auto;
-  color: #00ff00;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.my-armies-container h2 {
-  font-size: 2.5rem;
-}
-
-.my-armies-container a {
-  color: #00ff00;
-  text-decoration: none;
-  transition: color 0.3s;
-  margin: 0 10px;
-}
-
-.my-armies-container a:hover {
-  color: #00cc00;
-}
-
-.my-armies-container button {
+.army-list {
   background-color: #000000;
   color: #00ff00;
-  border: 1px solid #00ff00;
-  padding: 5px 10px;
-  cursor: pointer;
   font-family: 'Courier New', Courier, monospace;
-  transition: background-color 0.3s, color 0.3s;
-  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid #333333;
+  margin: 10px 0;
+  list-style-type: none;
 }
 
-.my-armies-container button:hover {
-  background-color: #333333;
+.army-list-item {
+  padding: 5px;
+  border-bottom: 1px solid #333333;
+}
+
+.army-list-item a {
   color: #00ff00;
+  text-decoration: none;
+}
+
+.army-list-item a:hover {
+  color: #00cc00;
 }

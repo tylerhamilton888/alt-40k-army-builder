@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getFactions } from '../../services/factionService';
 import { getUnitsByFaction } from '../../services/unitService';
@@ -137,9 +137,9 @@ const CreateArmy = () => {
   };
 
   return (
-    <div className="army-container">
+    <div className="create-army-container">
       <div className="create-army-section">
-        <h1>{isEditing ? 'Edit Army' : 'Create Army'}</h1>
+        <h2>{isEditing ? 'Edit Army' : 'Create Army'}</h2>
         <label htmlFor="armyName">Army Name:</label>
         <input
           type="text"
@@ -147,7 +147,6 @@ const CreateArmy = () => {
           value={armyName}
           onChange={(e) => setArmyName(e.target.value)}
         />
-
         <label htmlFor="faction">Select Faction:</label>
         <select id="faction" onChange={handleFactionChange} value={selectedFaction}>
           <option value="">--Select Faction--</option>
@@ -157,189 +156,67 @@ const CreateArmy = () => {
             </option>
           ))}
         </select>
-
         {selectedFaction && (
-          <div className="unit-list-container">
-            <h2>HQ</h2>
-            {units.HQ.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
+          <>
+            <h2>Units</h2>
+            {Object.keys(units).map((unitType) => (
+              <div key={unitType}>
+                <h3>{unitType}</h3>
+                {units[unitType].map(unit => (
+                  <div key={unit.id}>
+                    <span>{unit.name}</span>
+                    <button onClick={() => addUnitToArmy(unit)}>Add</button>
+                    <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
+                    {visibleStats === unit.id && (
+                      <div className="stats">
+                        <p>Movement: {unit.movement}</p>
+                        <p>Weapon Skill: {unit.weaponSkill}</p>
+                        <p>Ballistic Skill: {unit.ballisticSkill}</p>
+                        <p>Strength: {unit.strength}</p>
+                        <p>Toughness: {unit.toughness}</p>
+                        <p>Wounds: {unit.wounds}</p>
+                        <p>Initiative: {unit.initiative}</p>
+                        <p>Attacks: {unit.attacks}</p>
+                        <p>Leadership: {unit.leadership}</p>
+                        <p>Armor Save: {unit.armorSave}</p>
+                        <p>Points: {unit.points}</p>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
               </div>
             ))}
-            <h2>Troops</h2>
-            {units.Troops.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-            <h2>Elites</h2>
-            {units.Elites.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-            <h2>Fast Attack</h2>
-            {units.FastAttack.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-            <h2>Heavy Support</h2>
-            {units.HeavySupport.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-            <h2>Flyers</h2>
-            {units.Flyer.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-            <h2>Transport</h2>
-            {units.Transport.map(unit => (
-              <div key={unit.id}>
-                <span>{unit.name}</span>
-                <button onClick={() => addUnitToArmy(unit)}>Add</button>
-                <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-                {visibleStats === unit.id && (
-                  <div>
-                    <p>Movement: {unit.movement}</p>
-                    <p>Weapon Skill: {unit.weaponSkill}</p>
-                    <p>Ballistic Skill: {unit.ballisticSkill}</p>
-                    <p>Strength: {unit.strength}</p>
-                    <p>Toughness: {unit.toughness}</p>
-                    <p>Wounds: {unit.wounds}</p>
-                    <p>Initiative: {unit.initiative}</p>
-                    <p>Attacks: {unit.attacks}</p>
-                    <p>Leadership: {unit.leadership}</p>
-                    <p>Armor Save: {unit.armorSave}</p>
-                    <p>Points: {unit.points}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          </>
         )}
       </div>
-
-      <div className="current-army-section">
-        <h3>Current Army:</h3>
-        <div className="current-army-container">
-          <ul>
-            {currentArmy.map((unit, index) => (
-              <li key={index}>
-                {unit.name} - {unit.points} points
-                <button onClick={() => removeUnitFromArmy(index)}>Remove</button>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="create-army-section">
+        <h2>Current Army</h2>
+        <ul className="current-army">
+          {currentArmy.map((unit, index) => (
+            <li key={index}>
+              <span>{unit.name}</span>
+              <button onClick={() => toggleStats(unit.id)}>Display Stats</button>
+              {visibleStats === unit.id && (
+                <div className="stats">
+                  <p>Movement: {unit.movement}</p>
+                  <p>Weapon Skill: {unit.weaponSkill}</p>
+                  <p>Ballistic Skill: {unit.ballisticSkill}</p>
+                  <p>Strength: {unit.strength}</p>
+                  <p>Toughness: {unit.toughness}</p>
+                  <p>Wounds: {unit.wounds}</p>
+                  <p>Initiative: {unit.initiative}</p>
+                  <p>Attacks: {unit.attacks}</p>
+                  <p>Leadership: {unit.leadership}</p>
+                  <p>Armor Save: {unit.armorSave}</p>
+                  <p>Points: {unit.points}</p>
+                </div>
+              )}
+              <button onClick={() => removeUnitFromArmy(index)}>Remove</button>
+            </li>
+          ))}
+        </ul>
         <p>Total Points: {totalPoints}</p>
-
-        <button onClick={handleSaveArmy}>{isEditing ? 'Update Army' : 'Save Army'}</button>
+        <button onClick={handleSaveArmy}>{isEditing ? 'Save Changes' : 'Save Army'}</button>
         <button onClick={handleCancel}>Cancel</button>
       </div>
     </div>

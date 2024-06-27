@@ -1,14 +1,50 @@
-.unit-stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 10px;
+.army-details {
+    padding: 1em;
+    background-color: #000000;
     color: #00ff00;
     font-family: 'Courier New', Courier, monospace;
   }
   
-  .unit-stats div {
-    margin: 5px;
+  .army-details h1,
+  .army-details h2,
+  .army-details h3 {
     text-align: center;
+  }
+  
+  .units-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .unit {
+    margin: 1em 0;
+  }
+  
+  .unit button {
+    margin-left: 1em;
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    cursor: pointer;
+  }
+  
+  .unit button:hover {
+    background-color: #333333;
+  }
+  
+  .unit-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    border: 1px solid #00ff00;
+    padding: 0.5em;
+    border-radius: 5px;
+    margin-top: 1em;
+  }
+  
+  .stat {
+    flex: 1 1 30%;
+    margin: 0.5em 0;
   }
   

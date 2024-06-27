@@ -34,83 +34,80 @@
       "id": 6
     }
   ],
-    "imperiumQuotes": [
-      {
-        "id": 1,
-        "text": "The Emperor Protects"
-      },
-      {
-        "id": 2,
-        "text": "It is better to die for the Emperor than to live for yourself"
-      },
-      {
-        "id": 3,
-        "text": "To Trust the Mutant is to Dishonor the Emperor"
-      },
-      {
-        "id": 4,
-        "text": "Suffer not the witch to live"
-      },
-      {
-        "id": 5,
-        "text": "The heretic must be purged with fire and steel"
-      },
-      {
-        "id": 6,
-        "text": "There is no shelter from the storm of battle"
-      },
-      {
-        "id": 7,
-        "text": "Faith is my shield, and fury is my sword"
-      },
-      {
-        "id": 8,
-        "text": "In the darkness, follow the light of Terra"
-      },
-      {
-        "id": 9,
-        "text": "Hope is the first step on the road to disappointment"
-      },
-      {
-        "id": 10,
-        "text": "Burn the heretic. Kill the mutant. Purge the unclean"
-      },
-      {
-        "id": 11,
-        "text": "An open mind is like a fortress with its gates unbarred and unguarded"
-      },
-      {
-        "id": 12,
-        "text": "Knowledge is power, guard it well"
-      },
-      {
-        "id": 13,
-        "text": "To admit defeat is to blaspheme against the Emperor"
-      },
-      {
-        "id": 14,
-        "text": "Only in death does duty end"
-      },
-      
-      {
-        "id": 16,
-        "text": "A small mind is easily filled with faith"
-      },
-      {
-        "id": 17,
-        "text": "The Emperor’s light shines upon us all"
-      },
-      
-      {
-        "id": 19,
-        "text": "Blessed is the mind too small for doubt"
-      },
-      {
-        "id": 20,
-        "text": "The righteous fear no darkness"
-      }
-    ],
-
+  "imperiumQuotes": [
+    {
+      "id": 1,
+      "text": "The Emperor Protects"
+    },
+    {
+      "id": 2,
+      "text": "It is better to die for the Emperor than to live for yourself"
+    },
+    {
+      "id": 3,
+      "text": "To Trust the Mutant is to Dishonor the Emperor"
+    },
+    {
+      "id": 4,
+      "text": "Suffer not the witch to live"
+    },
+    {
+      "id": 5,
+      "text": "The heretic must be purged with fire and steel"
+    },
+    {
+      "id": 6,
+      "text": "There is no shelter from the storm of battle"
+    },
+    {
+      "id": 7,
+      "text": "Faith is my shield, and fury is my sword"
+    },
+    {
+      "id": 8,
+      "text": "In the darkness, follow the light of Terra"
+    },
+    {
+      "id": 9,
+      "text": "Hope is the first step on the road to disappointment"
+    },
+    {
+      "id": 10,
+      "text": "Burn the heretic. Kill the mutant. Purge the unclean"
+    },
+    {
+      "id": 11,
+      "text": "An open mind is like a fortress with its gates unbarred and unguarded"
+    },
+    {
+      "id": 12,
+      "text": "Knowledge is power, guard it well"
+    },
+    {
+      "id": 13,
+      "text": "To admit defeat is to blaspheme against the Emperor"
+    },
+    {
+      "id": 14,
+      "text": "Only in death does duty end"
+    },
+    {
+      "id": 16,
+      "text": "A small mind is easily filled with faith"
+    },
+    {
+      "id": 17,
+      "text": "The Emperor’s light shines upon us all"
+    },
+    {
+      "id": 19,
+      "text": "Blessed is the mind too small for doubt"
+    },
+    {
+      "id": 20,
+      "text": "The righteous fear no darkness"
+    }
+  ],
   "factions": [
     {
       "id": 1,
