@@ -1,67 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getArmyById } from '../../services/armyService';
-import { getFactionById } from '../../services/factionService';
-import './ArmyDetails.css';
+import '../../App.css';
 
 const ArmyDetails = () => {
   const { armyId } = useParams();
+  const navigate = useNavigate();
   const [army, setArmy] = useState(null);
-  const [faction, setFaction] = useState('');
-  const [visibleStats, setVisibleStats] = useState(null);
+  const [showAllStats, setShowAllStats] = useState(false);
 
   useEffect(() => {
     const fetchArmy = async () => {
-      try {
-        const armyData = await getArmyById(armyId);
-        setArmy(armyData);
-
-        const factionData = await getFactionById(armyData.armyFaction);
-        setFaction(factionData.factionName);
-      } catch (error) {
-        console.error('Failed to fetch army details:', error);
-      }
+      const armyData = await getArmyById(armyId);
+      setArmy(armyData);
     };
-
     fetchArmy();
   }, [armyId]);
 
-  const toggleStats = (unitId) => {
-    setVisibleStats(visibleStats === unitId ? null : unitId);
+  const toggleAllStats = () => {
+    setShowAllStats((prevShowAllStats) => !prevShowAllStats);
   };
 
   if (!army) {
-    return <p>Loading army details...</p>;
+    return <p>Loading...</p>;
   }
 
   return (
-    <div className="army-details">
+    <div className="army-details-container">
       <h1>{army.armyName}</h1>
-      <h2>Faction: {faction}</h2>
+      <h2>Faction: {army.armyFaction}</h2>
       <h3>Total Points: {army.totalPoints}</h3>
-      <div className="units-container">
+      <button onClick={toggleAllStats}>
+        {showAllStats ? 'Hide All Stats' : 'Display Unit Stats'}
+      </button>
+      <ul className="army-units">
         {army.units.map((unit, index) => (
-          <div key={index} className="unit">
+          <li key={index}>
             <span>{unit.name}</span>
-            <button onClick={() => toggleStats(unit.id)}>Toggle Stats</button>
-            {visibleStats === unit.id && (
-              <div className="unit-stats">
-                <div className="stat">Movement: {unit.movement}</div>
-                <div className="stat">Weapon Skill: {unit.weaponSkill}</div>
-                <div className="stat">Ballistic Skill: {unit.ballisticSkill}</div>
-                <div className="stat">Strength: {unit.strength}</div>
-                <div className="stat">Toughness: {unit.toughness}</div>
-                <div className="stat">Wounds: {unit.wounds}</div>
-                <div className="stat">Initiative: {unit.initiative}</div>
-                <div className="stat">Attacks: {unit.attacks}</div>
-                <div className="stat">Leadership: {unit.leadership}</div>
-                <div className="stat">Armor Save: {unit.armorSave}</div>
-                <div className="stat">Points: {unit.points}</div>
+            {showAllStats && (
+              <div className="stats">
+                <p>Movement: {unit.movement}</p>
+                <p>Weapon Skill: {unit.weaponSkill}</p>
+                <p>Ballistic Skill: {unit.ballisticSkill}</p>
+                <p>Strength: {unit.strength}</p>
+                <p>Toughness: {unit.toughness}</p>
+                <p>Wounds: {unit.wounds}</p>
+                <p>Initiative: {unit.initiative}</p>
+                <p>Attacks: {unit.attacks}</p>
+                <p>Leadership: {unit.leadership}</p>
+                <p>Armor Save: {unit.armorSave}</p>
+                <p>Points: {unit.points}</p>
               </div>
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
+      <button onClick={() => navigate('/myarmies')}>Back to My Armies</button>
     </div>
   );
 };

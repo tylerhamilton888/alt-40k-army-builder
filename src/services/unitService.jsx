@@ -1,6 +1,6 @@
 const factionEndpoints = {
-  1: 'custodesUnits', 
-  2: 'greyKnightUnits' 
+  1: 'custodesUnits',
+  2: 'greyKnightUnits'
 };
 
 export const getUnitsByFaction = async (factionIdentifier) => {

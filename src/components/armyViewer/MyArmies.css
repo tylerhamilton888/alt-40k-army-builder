@@ -21,3 +21,22 @@
 .army-list-item a:hover {
   color: #00cc00;
 }
+
+.army-list-item button,
+.army-list-item .edit-button {
+  background-color: #000000;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.army-list-item button:hover,
+.army-list-item .edit-button:hover {
+  background-color: #333333;
+  color: #00ff00;
+}
