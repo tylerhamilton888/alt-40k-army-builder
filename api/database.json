@@ -327,7 +327,7 @@
   "custodesUnits": [
     {
       "id": 1,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Shield Captain",
       "unitTypeId": 1,
       "movement": 6,
@@ -344,24 +344,24 @@
     },
     {
       "id": 2,
-      "factionId": 1,
-      "name": "Trajann Valoris",
+      "factionId": 3,
+      "name": "Captain General Trajann Valoris",
       "unitTypeId": 1,
       "movement": 6,
-      "weaponSkill": 6,
-      "ballisticSkill": 6,
-      "strength": 6,
-      "toughness": 6,
-      "wounds": 66,
-      "initiative": 6,
-      "attacks": 6,
-      "leadership": 6,
-      "armorSave": 6,
-      "points": 6
+      "weaponSkill": 2,
+      "ballisticSkill": 5,
+      "strength": 5,
+      "toughness": 5,
+      "wounds": 7,
+      "initiative": 5,
+      "attacks": 5,
+      "leadership": 10,
+      "armorSave": 3,
+      "points": 259
     },
     {
       "id": 3,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Valerian",
       "unitTypeId": 1,
       "movement": 6,
@@ -378,7 +378,7 @@
     },
     {
       "id": 4,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Aleya",
       "unitTypeId": 2,
       "movement": 6,
@@ -395,7 +395,7 @@
     },
     {
       "id": 5,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Blademaster",
       "unitTypeId": 2,
       "movement": 6,
@@ -412,7 +412,7 @@
     },
     {
       "id": 6,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Knight Centura",
       "unitTypeId": 2,
       "movement": 6,
@@ -429,7 +429,7 @@
     },
     {
       "id": 7,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Vexilus Praetor",
       "unitTypeId": 2,
       "movement": 6,
@@ -446,7 +446,7 @@
     },
     {
       "id": 8,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Guard Squad",
       "unitTypeId": 3,
       "movement": 6,
@@ -462,8 +462,25 @@
       "points": 173
     },
     {
+      "id": 9,
+      "factionId": 3,
+      "name": "Sagittarum Squad",
+      "unitTypeId": 3,
+      "movement": 6,
+      "weaponSkill": 2,
+      "ballisticSkill": 2,
+      "strength": 5,
+      "toughness": 5,
+      "wounds": 4,
+      "initiative": 5,
+      "attacks": 4,
+      "leadership": 10,
+      "armorSave": 3,
+      "points": 183
+    },
+    {
       "id": 10,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Sisters of Silence",
       "unitTypeId": 2,
       "movement": 6,
@@ -480,7 +497,7 @@
     },
     {
       "id": 11,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Allarus Squad",
       "unitTypeId": 2,
       "movement": 6,
@@ -497,7 +514,7 @@
     },
     {
       "id": 12,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Aquilon Squad",
       "unitTypeId": 2,
       "movement": 6,
@@ -514,7 +531,7 @@
     },
     {
       "id": 13,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Warden Squad",
       "unitTypeId": 2,
       "movement": 6,
@@ -531,7 +548,7 @@
     },
     {
       "id": 14,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Contemptor Achillus Dreadnought",
       "unitTypeId": 5,
       "movement": 8,
@@ -548,7 +565,7 @@
     },
     {
       "id": 15,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Contemptor Glatus Dreadnought",
       "unitTypeId": 5,
       "movement": 8,
@@ -565,7 +582,7 @@
     },
     {
       "id": 16,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Venerable Contemptor Dreadnought",
       "unitTypeId": 5,
       "movement": 8,
@@ -582,7 +599,7 @@
     },
     {
       "id": 17,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Agamatus Squad",
       "unitTypeId": 4,
       "movement": 18,
@@ -599,7 +616,7 @@
     },
     {
       "id": 18,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Ventari Squad",
       "unitTypeId": 4,
       "movement": 12,
@@ -616,7 +633,7 @@
     },
     {
       "id": 19,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Vertus Praetor Squad",
       "unitTypeId": 4,
       "movement": 14,
@@ -633,7 +650,7 @@
     },
     {
       "id": 20,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Pallas Grav Attack",
       "unitTypeId": 5,
       "movement": 16,
@@ -650,7 +667,7 @@
     },
     {
       "id": 21,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Caladius Grav Tank",
       "unitTypeId": 5,
       "movement": 14,
@@ -667,7 +684,7 @@
     },
     {
       "id": 22,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Telemon Heavy Dreadnought",
       "unitTypeId": 5,
       "movement": 8,
@@ -684,7 +701,7 @@
     },
     {
       "id": 23,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Venerable Land Raider",
       "unitTypeId": 6,
       "movement": 6,
@@ -701,7 +718,7 @@
     },
     {
       "id": 24,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Ares Gunship",
       "unitTypeId": 6,
       "movement": 50,
@@ -718,7 +735,7 @@
     },
     {
       "id": 25,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Orion Assault Dropship",
       "unitTypeId": 6,
       "movement": 50,
@@ -735,7 +752,7 @@
     },
     {
       "id": 26,
-      "factionId": 1,
+      "factionId": 3,
       "name": "Coronus Grav Carrier",
       "unitTypeId": 7,
       "movement": 14,
@@ -751,21 +768,21 @@
       "points": 422
     },
     {
-      "name": "Test Troop",
-      "factionId": 1,
-      "unitTypeId": 2,
-      "movement": 5,
+      "id": 27,
+      "factionId": 3,
+      "name": "Rhino",
+      "unitTypeId": 7,
+      "movement": 12,
       "weaponSkill": 5,
-      "ballisticSkill": 5,
-      "strength": 55,
-      "toughness": 5,
-      "wounds": 5,
-      "initiative": 5,
-      "attacks": 5,
-      "leadership": 5,
-      "armorSave": 5,
-      "points": 5,
-      "id": 27
+      "ballisticSkill": 3,
+      "strength": 6,
+      "toughness": 11,
+      "wounds": 10,
+      "initiative": 1,
+      "attacks": 3,
+      "leadership": 9,
+      "armorSave": 3,
+      "points": 131
     }
   ],
   "greyKnightUnits": [
