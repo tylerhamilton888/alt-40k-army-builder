@@ -3,7 +3,7 @@ import "./NavBar.css";
 
 export const NavBar = () => {
     const navigate = useNavigate();
-    const currentUser = localStorage.getItem("game_user");
+    const currentUser = JSON.parse(localStorage.getItem("game_user"));
 
     return (
         <ul className="navbar">
@@ -16,7 +16,11 @@ export const NavBar = () => {
             <li className="navbar-item">
                 <Link className="navbar-link" to="/createarmy">Create Army</Link>
             </li>
-            
+            {currentUser && currentUser.isDev && (
+                <li className="navbar-item">
+                    <Link className="navbar-link" to="/devmode">Dev Mode</Link>
+                </li>
+            )}
             {currentUser && (
                 <li className="navbar-item navbar-logout">
                     <button

@@ -32,7 +32,7 @@ export const Register = (props) => {
     getUserByEmail(user.email).then((response) => {
       if (response.length > 0) {
         // Duplicate email. No good.
-        window.alert("Account with that email address already exists");
+        window.alert("Tech-Heresy Detected:  Account with that Email Already Exists");
       } else {
         // Good email, create user.
         registerNewUser();
