@@ -196,7 +196,7 @@
     },
     {
       "userId": 1,
-      "armyName": "Test Army",
+      "armyName": "Custodes Second Army",
       "armyFaction": 1,
       "units": [
         {
@@ -276,9 +276,14 @@
           "unitTypeId": 3,
           "unitId": 14,
           "quantity": 1
+        },
+        {
+          "unitTypeId": 6,
+          "unitId": 26,
+          "quantity": 1
         }
       ],
-      "totalPoints": 338,
+      "totalPoints": 829,
       "id": 7
     }
   ],
@@ -343,16 +348,16 @@
       "name": "Trajann Valoris",
       "unitTypeId": 1,
       "movement": 6,
-      "weaponSkill": 2,
-      "ballisticSkill": 5,
-      "strength": 5,
-      "toughness": 5,
-      "wounds": 7,
-      "initiative": 5,
-      "attacks": 5,
-      "leadership": 10,
-      "armorSave": 3,
-      "points": 259
+      "weaponSkill": 6,
+      "ballisticSkill": 6,
+      "strength": 6,
+      "toughness": 6,
+      "wounds": 66,
+      "initiative": 6,
+      "attacks": 6,
+      "leadership": 6,
+      "armorSave": 6,
+      "points": 6
     },
     {
       "id": 3,
@@ -455,23 +460,6 @@
       "leadership": 10,
       "armorSave": 3,
       "points": 173
-    },
-    {
-      "id": 9,
-      "factionId": 1,
-      "name": "Sagittarum Squad",
-      "unitTypeId": 3,
-      "movement": 6,
-      "weaponSkill": 2,
-      "ballisticSkill": 2,
-      "strength": 5,
-      "toughness": 5,
-      "wounds": 4,
-      "initiative": 5,
-      "attacks": 4,
-      "leadership": 10,
-      "armorSave": 3,
-      "points": 183
     },
     {
       "id": 10,
@@ -763,21 +751,21 @@
       "points": 422
     },
     {
-      "id": 27,
+      "name": "Test Troop",
       "factionId": 1,
-      "name": "Rhino",
-      "unitTypeId": 7,
-      "movement": 12,
+      "unitTypeId": 2,
+      "movement": 5,
       "weaponSkill": 5,
-      "ballisticSkill": 3,
-      "strength": 6,
-      "toughness": 11,
-      "wounds": 10,
-      "initiative": 1,
-      "attacks": 3,
-      "leadership": 9,
-      "armorSave": 3,
-      "points": 131
+      "ballisticSkill": 5,
+      "strength": 55,
+      "toughness": 5,
+      "wounds": 5,
+      "initiative": 5,
+      "attacks": 5,
+      "leadership": 5,
+      "armorSave": 5,
+      "points": 5,
+      "id": 27
     }
   ],
   "greyKnightUnits": [
@@ -870,8 +858,8 @@
       "id": 6,
       "factionId": 2,
       "name": "Castellan Crowe",
-      "unitTypeId": 1,
-      "movement": 6,
+      "unitTypeId": "3",
+      "movement": "5",
       "weaponSkill": 2,
       "ballisticSkill": 2,
       "strength": 4,
@@ -1222,6 +1210,22 @@
       "leadership": 8,
       "armorSave": 3,
       "points": 90
+    },
+    {
+      "name": "New Gk Troop",
+      "unitTypeId": "3",
+      "movement": "1",
+      "weaponSkill": "6",
+      "ballisticSkill": "6",
+      "strength": "6",
+      "toughness": "6",
+      "wounds": "6",
+      "initiative": "66",
+      "attacks": "5",
+      "leadership": "66",
+      "armorSave": "5",
+      "points": "6",
+      "id": 27
     }
   ]
 }

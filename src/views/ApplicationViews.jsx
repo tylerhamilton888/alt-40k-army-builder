@@ -5,6 +5,7 @@ import MyArmies from '../components/armyViewer/MyArmies';
 import CreateArmy from '../components/armyCreator/CreateArmy';
 import ArmyDetails from '../components/armyViewer/ArmyDetails';
 import QuoteRandomizer from '../components/quoteGenerator/QuoteRandomizer';
+import DevMode from '../components/devmode/DevMode';  
 
 
 export const ApplicationViews = () => {
@@ -25,6 +26,9 @@ export const ApplicationViews = () => {
         <Route path="/createarmy" element={<CreateArmy />} />
         <Route path="/createarmy/:armyId" element={<CreateArmy />} />
         <Route path="/army/:armyId" element={<ArmyDetails />} />
+        {currentUser && currentUser.isDev && (
+          <Route path="/devmode" element={<DevMode />} />
+        )}
       </Routes>
       <Outlet />
     </>
@@ -37,3 +41,4 @@ const Home = ({ currentUser }) => {
   }
   return <h1>Welcome, {currentUser.username}</h1>;
 };
+

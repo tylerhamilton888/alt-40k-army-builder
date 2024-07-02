@@ -20,7 +20,8 @@ export const Login = () => {
           "game_user",
           JSON.stringify({
             id: user.id,
-            username: user.username
+            username: user.username,
+            isDev: user.isDev
           })
         );
         navigate("/home");
