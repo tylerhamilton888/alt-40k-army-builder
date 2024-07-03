@@ -885,7 +885,7 @@
       "id": 6,
       "factionId": 2,
       "name": "Castellan Crowe",
-      "unitTypeId": 3,
+      "unitTypeId": 1,
       "movement": 5,
       "weaponSkill": 2,
       "ballisticSkill": 2,
