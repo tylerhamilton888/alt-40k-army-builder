@@ -22,7 +22,7 @@ export const Register = (props) => {
           })
         );
         // Then it will navigate to home
-        navigate("/");
+        navigate("/home");
       }
     });
   };

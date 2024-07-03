@@ -37,6 +37,11 @@
       "email": "tyler@email.com",
       "username": "Tyler",
       "id": 7
+    },
+    {
+      "email": "tester@testmail.test",
+      "username": "Test Man",
+      "id": 8
     }
   ],
   "imperiumQuotes": [
@@ -350,7 +355,7 @@
     {
       "id": 2,
       "factionId": 1,
-      "name": "Captain General Trajann Valoris",
+      "name": "Trajann Valoris",
       "unitTypeId": 1,
       "movement": 6,
       "weaponSkill": 2,

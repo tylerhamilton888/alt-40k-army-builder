@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getArmyById } from '../../services/armyService';
+import { getFactions } from '../../services/factionService';
 import '../../App.css';
 
 const ArmyDetails = () => {
   const { armyId } = useParams();
   const navigate = useNavigate();
   const [army, setArmy] = useState(null);
+  const [factions, setFactions] = useState([]);
   const [showAllStats, setShowAllStats] = useState(false);
 
   useEffect(() => {
@@ -14,11 +16,21 @@ const ArmyDetails = () => {
       const armyData = await getArmyById(armyId);
       setArmy(armyData);
     };
+    const fetchFactions = async () => {
+      const factionData = await getFactions();
+      setFactions(factionData);
+    };
     fetchArmy();
+    fetchFactions();
   }, [armyId]);
 
   const toggleAllStats = () => {
     setShowAllStats((prevShowAllStats) => !prevShowAllStats);
+  };
+
+  const getFactionName = (factionId) => {
+    const faction = factions.find(faction => faction.id === factionId);
+    return faction ? faction.factionName : 'Unknown Faction';
   };
 
   if (!army) {
@@ -28,7 +40,7 @@ const ArmyDetails = () => {
   return (
     <div className="army-details-container">
       <h1>{army.armyName}</h1>
-      <h2>Faction: {army.armyFaction}</h2>
+      <h2>Faction: {getFactionName(army.armyFaction)}</h2>
       <h3>Total Points: {army.totalPoints}</h3>
       <button onClick={toggleAllStats}>
         {showAllStats ? 'Hide All Stats' : 'Display Unit Stats'}
